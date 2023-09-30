@@ -12,8 +12,6 @@ It includes:
 - Delete account as authenticated user
 - Google Auth integration
 
-I have also left a OpenAI client and a ReactQueryProvider in the template for easy use.
-
 Tech Stack:
 
 - NextJS
@@ -28,16 +26,18 @@ Tech Stack:
 
 ### Initial Setup:
 
-Clone the repo and run npm install.
+- Clone the repo.
+- Run npm install.
+- Run npm run dev.
 
 ### Supabase Setup:
 
 - Go to Supabase and create a new project. You will need to create a new organization if you don't already have one.
-- Enter a name for the project and create a password for the DB. For what we will do this will not be needed but its good to keep if you want to access the database directly.
+- Enter a name for the project and create a password for the DB. This will not be needed for our usage but its good to keep if you want to access the database directly.
   (You can reset your DB password if you go to Settings -> Database -> Database Password)
 
-- You will then be presented with the project API keys. Copy the public key the service_role key and also the project url.
-  (You can access these also if you are on Settings -> API)
+- You will then be presented with the project API keys. Copy the public key, the service role key and also the project url.
+  (You can access these also if go to Settings -> API)
 
 - Create a .env.local file in your project and paste the following into it:
 
@@ -63,7 +63,7 @@ You can make test accounts like yourlegitemail+1@gmail.com and it will still be 
 
 Note:
 
-If you stopped receiving emails. Supabase has a STMP client built in for us to use but its limited to only 4 emails per hour. This is meant for testing and not for production use. This is why I recommend integrating with Resend for production projects.
+If you stopped receiving emails. Supabase has a STMP client built in for us to use but at the time of writing this its limited to only 4 emails per hour. This is meant for testing and not for production use. I recommend integrating with Resend for production projects. They have a generous free tier for sending emails to your users.
 
 ### Google Auth Setup:
 
@@ -76,10 +76,10 @@ Configure a consent screen if needed and choose external users. Enter only the m
 Next go to Create Credentials again.
 
 - Choose web application.
-  In Authorized Javascript Origins add http://localhost:3000 (you will change this to your domain name if you go to production)
+  In Authorized Javascript Origins add http://localhost:3000 (you will change this to your domain name if you go to production).
   In the Authorized redirect URL’s add your_public_supabase_url/auth/v1/callback.
   You will then see your Client ID and Client Secret after you click Create.
-- Go to Supabase -> Authorization -> Providers. Enter the Client ID and the Client secret and save.
+- Go to Supabase -> Authorization -> Providers. Find Google, enable it and enter the Client ID and the Client secret and save.
   Once you've done this you will be able to go to /sign-up or /sign-in route and click on Continue with Google. Both will work and you should see a user table row in your Supabase user table by going to Supabase -> Table Editor -> users.
 
 Additional Supabase User Auth:
@@ -158,7 +158,7 @@ You can see these functions that you made in Supabase -> Database -> Functions.
 
 Since we are in the era of AI, I have left an OpenAI client setup in the template, located at app/utils/chatgpt.ts.
 
-- You can setup OpenAI by going to [OpenAI API Keys](https://platform.openai.com/account/api-keys). Choose Create a new secret key.
+- You can setup OpenAI by going to [OpenAI API Keys](https://platform.openai.com/account/api-keys). Choose Create a new secret key. (note that using this will not be free)
 - Then add OPENAI_API_KEY=your_openai_api_key to your .env.local file.
 
 ### Additional:
